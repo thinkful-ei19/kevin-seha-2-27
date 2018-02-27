@@ -66,6 +66,7 @@ const generateVideoItemHtml = function( video ) {
     </h3>
     </div>`;
 };
+
 // fetchVideos( 'batman', ( response ) => {
 //   let videos =  decorateResponse( response );
 //   let videosHtml = videos.map( video => {
@@ -79,8 +80,17 @@ const generateVideoItemHtml = function( video ) {
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function( videos ) {
-
+  store.items.push( videos );
 };
+fetchVideos( 'batman', ( response ) => {
+  let videos =  decorateResponse( response );
+  // let videosHtml = videos.map( video => {
+  //   return generateVideoItemHtml( video );
+  // } );
+  addVideosToStore( videos );
+  console.log( store );
+} );
+
 
 // TASK:
 // 1. Create a `render` function
@@ -88,7 +98,7 @@ const addVideosToStore = function( videos ) {
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
 const render = function() {
-
+   
 };
 
 // TASK:
