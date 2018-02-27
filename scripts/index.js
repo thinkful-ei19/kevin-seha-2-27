@@ -20,16 +20,14 @@ const fetchVideos = function(searchTerm, callback) {
     q: `${searchTerm}`,
     part: 'snippet',
     key: API_KEY,
-    maxResults: 25,
+    maxResults: 5,
   };
   $.getJSON(BASE_URL, query, callback);
 };
 
-fetchVideos('batman', (response) => {
+let testResponse = fetchVideos('batman', (response) => {
   console.log(response);
 });
-
-// console.log(fetchVideos);
 
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
@@ -40,8 +38,23 @@ fetchVideos('batman', (response) => {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-
+  return response.items.map(api => {
+    api = [
+      {'id': item.id},
+      {'title': item.snippet.title},
+      {'thumbnails': item.snippet.thumbnails},
+    ];
+  });
 };
+
+// const apiResponse = response.items.map( ( item, index ) => ( {
+//   'id': item.id,
+//   'title': item.snippet.title,
+//   'thumbnails': item.snippet.thumbnails
+// } ) );
+
+let test = decorateResponse(testResponse);
+console.log(test);
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
