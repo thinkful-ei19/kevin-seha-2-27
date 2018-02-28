@@ -1,4 +1,5 @@
 'use strict';
+/* global $ */
 const API_KEY = 'AIzaSyDbPk1cPv54DwHd-ao4NY6qGjAqb5Wn6w8';
 
 
@@ -15,9 +16,9 @@ const fetchVideos = function( searchTerm, callback ) {
 };
 
 const decorateResponse = function( response ) {
-  return response.items.map( item => ( {
+  return response.items.map( item => ({
     id: item.id.videoId,
     title: item.snippet.title,
     thumbnails: item.snippet.thumbnails.default
-  } ) );
+  }));
 };
